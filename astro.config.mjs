@@ -1,14 +1,16 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from "@tailwindcss/vite";
-
 import sitemap from "@astrojs/sitemap";
+import react from "@astrojs/react";
+import markdoc from "@astrojs/markdoc";
+import keystatic from "@keystatic/astro";
 
-// https://astro.build/config
+// Manual merge of existing integrations & new ones
 export default defineConfig({
   vite: {
-      plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
-
-  integrations: [sitemap()]
+  integrations: [sitemap(), react(), markdoc(), keystatic()],
+  // For SSR, if using admin UI:
+  // output: 'server'
 });
